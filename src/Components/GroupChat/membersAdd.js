@@ -1,6 +1,6 @@
 let delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-module.exports = addGrp = async (client, msg, t, Gspread) => {
+module.exports = addGrp = async (client, msg, t, gspread) => {
     let chat = await require("../Templates/basicCheckGroupChat")(client, msg);
     // const chat = await msg.getChat()
 
@@ -23,14 +23,6 @@ module.exports = addGrp = async (client, msg, t, Gspread) => {
         await msg.react("⚡");
 
         if (true) {
-            let gspread = new Gspread(
-                {
-                    keyFile: "./src/c.json",
-                    url: t,
-                }
-                // "https://docs.google.com/spreadsheets/d/1cqUBrhoUKcsWuTT8wm6DhZBG1QuMnrO89DoqAvygVgU/edit?usp=sharing"
-            );
-
             let list = await gspread.getData();
 
             for (let i = 1; i < list.length; i++) {

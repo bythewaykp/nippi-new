@@ -2,3 +2,4 @@ node_modules
 Sessions/*
 .wwebjs_cache
 Files/*
+Creds/*

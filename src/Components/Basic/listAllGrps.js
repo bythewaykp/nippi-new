@@ -2,7 +2,7 @@ const fs = require("fs");
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 const listgrps = async (client, msg, t) => {
-    if (t === "1") {
+    if (t === "-p") {
         let k = [];
         console.log("\n --- Send grplist WA ---\n");
         console.log(msg.from);

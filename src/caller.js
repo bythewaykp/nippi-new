@@ -1,17 +1,31 @@
-// import path from "path";
 const path = require("path");
+
+const { Gspread } = require(path.join(
+    __dirname,
+    "./Components/Templates/gspreadClass"
+));
+
+const gspread = new Gspread();
 
 module.exports = async (client, msg, MessageMedia) => {
     try {
         let v = String(msg.body).split(" ")[0];
         let t = String(msg.body).split(" ").splice(1).join(" ");
 
+        // console.log(msg._data.caption);
+        if (msg._data.caption == ".s" || v == ".s") {
+            await require(path.join(
+                __dirname,
+                "./Components/Features/sticker"
+            ))(client, msg, msg._data.caption.split(" ").splice(1).join(" "));
+        }
+
         switch (v) {
             case ".t":
                 await require(path.join(
                     __dirname,
                     "./Components/Features/test"
-                ))(client, msg, t, MessageMedia);
+                ))(client, msg, MessageMedia, t);
                 break;
 
             case ".h":
@@ -57,15 +71,11 @@ module.exports = async (client, msg, MessageMedia) => {
                 break;
 
             case ".a":
-                let { Gspread } = require(path.join(
-                    __dirname,
-                    "./Components/Templates/gspreadClass"
-                ));
                 await require("./Components/GroupChat/membersAdd")(
                     client,
                     msg,
                     t,
-                    Gspread
+                    gspread
                 );
                 break;
 
@@ -76,24 +86,17 @@ module.exports = async (client, msg, MessageMedia) => {
                 ))(client, msg);
                 break;
 
-            case ".y":
-                await require(path.join(
-                    __dirname,
-                    "./Components/Features/ytDownload"
-                ))(client, msg, t, MessageMedia);
-                break;
+            // case ".y":
+            //     await require(path.join(
+            //         __dirname,
+            //         "./Components/Features/ytDownload"
+            //     ))(client, msg, t, MessageMedia);
+            //     break;
 
             case ".z":
                 await require(path.join(
                     __dirname,
                     "./Components/GroupChat/sendGrpMessageMembers"
-                ))(client, msg, t);
-                break;
-
-            case ".s":
-                await require(path.join(
-                    __dirname,
-                    "./Components/Features/sticker"
                 ))(client, msg, t);
                 break;
 
@@ -129,7 +132,7 @@ module.exports = async (client, msg, MessageMedia) => {
                     await require(path.join(
                         __dirname,
                         "./Components/Basic/sendBulk"
-                    ))(client, msg, MessageMedia, t);
+                    ))(client, msg, MessageMedia, gspread, t);
                     break;
             }
         }

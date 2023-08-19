@@ -1,7 +1,13 @@
 const { google } = require("googleapis");
+const path = require("path");
+
+const url =
+    "https://docs.google.com/spreadsheets/d/1cqUBrhoUKcsWuTT8wm6DhZBG1QuMnrO89DoqAvygVgU/edit?usp=sharing";
+
+const keyFile = "Creds/creds.json";
 
 class Gspread {
-    constructor({ keyFile, url }) {
+    constructor() {
         this.id = url.split("/")[5];
         const auth = new google.auth.GoogleAuth({
             keyFile,
@@ -36,13 +42,6 @@ class Gspread {
                 console.log(error);
             }
         }
-    }
-
-    async test() {
-        // const result = await this.service.spreadsheets.values.get({
-        //     spreadsheetId: this.id,
-        //     range: "Sheet1!A1:C1000",
-        // });
     }
 }
 

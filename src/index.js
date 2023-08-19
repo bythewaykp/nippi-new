@@ -1,4 +1,5 @@
 let { Client, LocalAuth, MessageMedia } = require("whatsapp-web.js");
+const path = require("path");
 
 let headless = false;
 
@@ -60,9 +61,9 @@ client.on("disconnected", async () => {
 client.on("message_create", async (msg) => {
     clearCache();
 
-    await require("./caller")(client, msg, MessageMedia);
+    // await require("./caller")(client, msg, MessageMedia);
 
-    // await require(path.join(__dirname, "./caller"))(client, msg, MessageMedia);
+    await require(path.join(__dirname, "caller"))(client, msg, MessageMedia);
 });
 
 client.initialize();

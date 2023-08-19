@@ -4,9 +4,22 @@ module.exports = async (client, msg) => {
     if (chat.isGroup) {
         let isadmin = require("./adminCheck");
 
+        let from = msg.author || msg.from;
+
+        // return chat;
+
+        // if (isadmin(from, chat)) {
+        //     return chat;
+        // } else {
+        //     //sender is not an admin
+        //     await msg.reply(`u're not an admin vro`);
+        //     return false;
+        // }
+
         if (isadmin(client.info.wid._serialized, chat)) {
             //bot is admin
-            let from = msg.author || msg.from;
+
+            return chat;
 
             if (isadmin(from, chat)) {
                 return chat;
