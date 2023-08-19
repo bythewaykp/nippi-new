@@ -1,0 +1,19 @@
+{
+    "name": "nippi-new",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "node src/index.js",
+        "test": "node src/main.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "google-auth-library": "^9.0.0",
+        "google-spreadsheet": "^4.0.2",
+        "googleapis": "^124.0.0",
+        "whatsapp-web.js": "^1.22.1"
+    }
+}
