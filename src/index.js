@@ -1,5 +1,4 @@
 let { Client, LocalAuth, MessageMedia } = require("whatsapp-web.js");
-// import path from "path";
 
 let headless = false;
 
